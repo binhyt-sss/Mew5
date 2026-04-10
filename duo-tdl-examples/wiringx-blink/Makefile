@@ -1,0 +1,31 @@
+TARGET=blink
+
+ifeq (,$(TOOLCHAIN_PREFIX))
+$(error TOOLCHAIN_PREFIX is not set)
+endif
+
+ifeq (,$(CFLAGS))
+$(error CFLAGS is not set)
+endif
+
+ifeq (,$(LDFLAGS))
+$(error LDFLAGS is not set)
+endif
+
+LDFLAGS += -lwiringx
+
+SOURCE = $(wildcard *.c)
+OBJS = $(patsubst %.c,%.o,$(SOURCE))
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY: clean
+clean:
+	@rm -rf *.o
+	@rm -rf $(OBJS)
+	@rm $(TARGET)
+

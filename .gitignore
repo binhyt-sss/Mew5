@@ -1,0 +1,8 @@
+*.zip
+.claude
+.vscode
+eiu.png
+
+# Toolchain and prebuilt libraries (contain symlinks, not for git)
+duo-tdl-examples/host-tools/
+duo-tdl-examples/libs/
