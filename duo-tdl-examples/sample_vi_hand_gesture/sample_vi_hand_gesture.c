@@ -18,16 +18,21 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "st7789.h"
+#include "ili9341.h"
 
 static bool g_lcd_ok = false;
 
 /* LCD frame buffer: one slot, TDL thread writes, LCD thread reads */
 #define LCD_BUF_SIZE (LCD_W * LCD_H * 3 / 2 + LCD_W * 2)  /* NV21 worst case */
+#define LCD_MAX_BOXES 8
+#define LCD_KPT_PER_HAND 21
 static uint8_t  g_lcd_buf[1280 * 720 * 3 / 2];  /* max VPSS output size */
 static int      g_lcd_buf_w = 0;
 static int      g_lcd_buf_h = 0;
 static int      g_lcd_buf_stride = 0;
+static float    g_lcd_boxes[LCD_MAX_BOXES * 4];           /* x0,y0,x1,y1 normalized */
+static float    g_lcd_kpts[LCD_MAX_BOXES * LCD_KPT_PER_HAND * 2]; /* x,y normalized per kpt */
+static int      g_lcd_nboxes = 0;
 static bool     g_lcd_buf_ready = false;
 static pthread_mutex_t g_lcd_mutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t  g_lcd_cond  = PTHREAD_COND_INITIALIZER;
@@ -51,16 +56,26 @@ static int g_probe_start_delay_ms = 300;
 void *run_lcd_thread(void *arg) {
   (void)arg;
   printf("Enter LCD thread\n");
+  int frame_count = 0;
   while (bExit == false) {
     pthread_mutex_lock(&g_lcd_mutex);
     while (!g_lcd_buf_ready && !bExit)
       pthread_cond_wait(&g_lcd_cond, &g_lcd_mutex);
     if (bExit) { pthread_mutex_unlock(&g_lcd_mutex); break; }
-    /* local copy of dims, data already in g_lcd_buf */
     int w = g_lcd_buf_w, h = g_lcd_buf_h, stride = g_lcd_buf_stride;
+    int nboxes = g_lcd_nboxes;
+    float boxes[LCD_MAX_BOXES * 4];
+    float kpts[LCD_MAX_BOXES * LCD_KPT_PER_HAND * 2];
+    if (nboxes > 0) {
+      memcpy(boxes, g_lcd_boxes, nboxes * 4 * sizeof(float));
+      memcpy(kpts,  g_lcd_kpts,  nboxes * LCD_KPT_PER_HAND * 2 * sizeof(float));
+    }
     g_lcd_buf_ready = false;
     pthread_mutex_unlock(&g_lcd_mutex);
-    st7789_draw_nv21(g_lcd_buf, w, h, stride);
+    frame_count++;
+    ili9341_draw_nv21_with_boxes_kpts(g_lcd_buf, w, h, stride,
+                                      boxes, nboxes, 0x07E0,
+                                      kpts, LCD_KPT_PER_HAND, 0xF800);
   }
   printf("Exit LCD thread\n");
   pthread_exit(NULL);
@@ -233,25 +248,6 @@ void *run_tdl_thread(void *pHandle) {
       continue;
     }
 
-    if (g_lcd_ok) {
-      VIDEO_FRAME_S *vf = &stFrame.stVFrame;
-      CVI_U32 frame_size = vf->u32Stride[0] * vf->u32Height * 3 / 2;
-      CVI_VOID *vaddr = CVI_SYS_Mmap(vf->u64PhyAddr[0], frame_size);
-      if (vaddr != NULL) {
-        pthread_mutex_lock(&g_lcd_mutex);
-        if (!g_lcd_buf_ready) {  /* skip if LCD thread still busy with previous frame */
-          memcpy(g_lcd_buf, vaddr, frame_size);
-          g_lcd_buf_w = (int)vf->u32Width;
-          g_lcd_buf_h = (int)vf->u32Height;
-          g_lcd_buf_stride = (int)vf->u32Stride[0];
-          g_lcd_buf_ready = true;
-          pthread_cond_signal(&g_lcd_cond);
-        }
-        pthread_mutex_unlock(&g_lcd_mutex);
-        CVI_SYS_Munmap(vaddr, frame_size);
-      }
-    }
-
     static int dbg_count = 0;
     if (dbg_count++ < 3)
       printf("Frame: %dx%d stride=%d fmt=%d phys=0x%llx\n",
@@ -267,30 +263,39 @@ void *run_tdl_thread(void *pHandle) {
       goto inf_error;
     }
 
+    cvtdl_handpose21_meta_ts stHandposeMeta;
+    memset(&stHandposeMeta, 0, sizeof(cvtdl_handpose21_meta_ts));
+
     if (stHandMeta.size == 0) {
       MutexAutoLock(ResultMutex, lock);
       g_stResult.valid = false;
-      goto inf_error;
+      /* Still send frame to LCD (no boxes) */
+      goto send_lcd;
     }
 
-    cvtdl_handpose21_meta_ts stHandposeMeta;
-    memset(&stHandposeMeta, 0, sizeof(cvtdl_handpose21_meta_ts));
+    /* HandKeypoint needs size + bbox pre-filled; use calloc, free with CVI_TDL_Free */
+    stHandposeMeta.size   = stHandMeta.size;
+    stHandposeMeta.width  = stFrame.stVFrame.u32Width;
+    stHandposeMeta.height = stFrame.stVFrame.u32Height;
+    stHandposeMeta.info   = (cvtdl_handpose21_meta_t *)
+                            calloc(stHandMeta.size, sizeof(cvtdl_handpose21_meta_t));
+    if (stHandposeMeta.info == NULL) goto send_lcd;
+    for (uint32_t i = 0; i < stHandMeta.size; i++) {
+      cvtdl_bbox_t *src = &stHandMeta.info[i].bbox;
+      stHandposeMeta.info[i].bbox_x = src->x1;
+      stHandposeMeta.info[i].bbox_y = src->y1;
+      stHandposeMeta.info[i].bbox_w = src->x2 - src->x1;
+      stHandposeMeta.info[i].bbox_h = src->y2 - src->y1;
+    }
+
     s32Ret = CVI_TDL_HandKeypoint(pstTDLHandle, &stFrame, &stHandposeMeta);
     if (s32Ret != CVI_TDL_SUCCESS) {
       printf("Hand keypoint failed!, ret=%x\n", s32Ret);
-      goto inf_error;
+      goto send_lcd;
     }
 
     int best_label = -1;
     float best_score = 0.0f;
-    for (uint32_t i = 0; i < stHandposeMeta.size; i++) {
-      s32Ret = CVI_TDL_HandKeypointClassification(pstTDLHandle, &stFrame,
-                                                  &stHandposeMeta.info[i]);
-      if (s32Ret == CVI_TDL_SUCCESS && stHandposeMeta.info[i].score > best_score) {
-        best_score = stHandposeMeta.info[i].score;
-        best_label = stHandposeMeta.info[i].label;
-      }
-    }
 
     {
       MutexAutoLock(ResultMutex, lock);
@@ -302,9 +307,62 @@ void *run_tdl_thread(void *pHandle) {
       g_stResult.valid = true;
     }
 
+  send_lcd:
+    if (g_lcd_ok) {
+      VIDEO_FRAME_S *vf = &stFrame.stVFrame;
+      CVI_U32 frame_size = vf->u32Stride[0] * vf->u32Height * 3 / 2;
+      CVI_VOID *vaddr = CVI_SYS_Mmap(vf->u64PhyAddr[0], frame_size);
+      if (vaddr != NULL) {
+        pthread_mutex_lock(&g_lcd_mutex);
+        if (!g_lcd_buf_ready) {
+          memcpy(g_lcd_buf, vaddr, frame_size);
+          g_lcd_buf_w      = (int)vf->u32Width;
+          g_lcd_buf_h      = (int)vf->u32Height;
+          g_lcd_buf_stride = (int)vf->u32Stride[0];
+          {
+            MutexAutoLock(ResultMutex, lock2);
+            g_lcd_nboxes = 0;
+            if (g_stResult.valid && g_stResult.stHandMeta.size > 0) {
+              uint32_t n = g_stResult.stHandMeta.size;
+              if (n > LCD_MAX_BOXES) n = LCD_MAX_BOXES;
+              float fw = (float)vf->u32Width;
+              float fh = (float)vf->u32Height;
+              for (uint32_t bi = 0; bi < n; bi++) {
+                g_lcd_boxes[bi*4+0] = g_stResult.stHandMeta.info[bi].bbox.x1 / fw;
+                g_lcd_boxes[bi*4+1] = g_stResult.stHandMeta.info[bi].bbox.y1 / fh;
+                g_lcd_boxes[bi*4+2] = g_stResult.stHandMeta.info[bi].bbox.x2 / fw;
+                g_lcd_boxes[bi*4+3] = g_stResult.stHandMeta.info[bi].bbox.y2 / fh;
+              }
+              g_lcd_nboxes = (int)n;
+            }
+            /* Pass keypoints: xn/yn are normalized within bbox, convert to frame-normalized */
+            if (stHandposeMeta.info != NULL) {
+              uint32_t n = stHandposeMeta.size;
+              if (n > LCD_MAX_BOXES) n = LCD_MAX_BOXES;
+              float fw = (float)vf->u32Width;
+              float fh = (float)vf->u32Height;
+              for (uint32_t bi = 0; bi < n; bi++) {
+                cvtdl_handpose21_meta_t *kp = &stHandposeMeta.info[bi];
+                float bx = kp->bbox_x, by = kp->bbox_y;
+                float bw = kp->bbox_w, bh = kp->bbox_h;
+                for (int k = 0; k < LCD_KPT_PER_HAND; k++) {
+                  g_lcd_kpts[(bi * LCD_KPT_PER_HAND + k) * 2 + 0] = (bx + kp->xn[k] * bw) / fw;
+                  g_lcd_kpts[(bi * LCD_KPT_PER_HAND + k) * 2 + 1] = (by + kp->yn[k] * bh) / fh;
+                }
+              }
+            }
+          }
+          g_lcd_buf_ready  = true;
+          pthread_cond_signal(&g_lcd_cond);
+        }
+        pthread_mutex_unlock(&g_lcd_mutex);
+        CVI_SYS_Munmap(vaddr, frame_size);
+      }
+    }
+
   inf_error:
     CVI_TDL_Free(&stHandMeta);
-    CVI_TDL_Free(&stHandposeMeta);
+    CVI_TDL_FreeHandPoses(&stHandposeMeta);
     CVI_VPSS_ReleaseChnFrame(0, g_tdl_vpss_chn, &stFrame);
   }
 
@@ -354,7 +412,7 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
   pstMWConfig->stVBPoolConfig.u32VBPoolCount = 1;
 
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].enFormat = PIXEL_FORMAT_BGR_888_PLANAR;
-  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 2;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 1;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Height = stVencSize.u32Height;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Width = stVencSize.u32Width;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].bBind = false;
@@ -386,8 +444,8 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
                           stVencSize.u32Height, VI_PIXEL_FORMAT, true);
   VPSS_CHN_DEFAULT_HELPER(&pstVpssConfig->astVpssChnAttr[1], stVencSize.u32Width,
                           stVencSize.u32Height, VI_PIXEL_FORMAT, true);
-  pstVpssConfig->astVpssChnAttr[0].u32Depth = 4;
-  pstVpssConfig->astVpssChnAttr[1].u32Depth = 4;
+  pstVpssConfig->astVpssChnAttr[0].u32Depth = 2;
+  pstVpssConfig->astVpssChnAttr[1].u32Depth = 2;
 
   SAMPLE_TDL_Get_Input_Config(&pstMWConfig->stVencConfig.stChnInputCfg);
   pstMWConfig->stVencConfig.u32FrameWidth = stVencSize.u32Width;
@@ -435,9 +493,9 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  if (st7789_open() == 0) {
+  if (ili9341_open() == 0) {
     g_lcd_ok = true;
-    st7789_fill(0x0000);  /* clear to black */
+    ili9341_fill(0x0000);  /* clear to black */
     printf("ST7789 LCD ready\n");
   } else {
     printf("ST7789 LCD init failed (no LCD attached?), continuing without display\n");
@@ -521,8 +579,8 @@ create_service_fail:
   CVI_TDL_DestroyHandle(stTDLHandle);
 create_tdl_fail:
   if (g_lcd_ok) {
-    st7789_fill(0x0000);
-    st7789_close();
+    ili9341_fill(0x0000);
+    ili9341_close();
   }
   SAMPLE_TDL_Destroy_MW(&stMWContext);
 
