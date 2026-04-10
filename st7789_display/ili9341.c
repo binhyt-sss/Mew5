@@ -100,7 +100,7 @@ static void ili9341_init(void) {
     cmd(0xC5); dat1(0x3E); dat1(0x28); /* VCOM 1 */
     cmd(0xC7); dat1(0x86);          /* VCOM 2 */
 
-    cmd(0x36); dat1(0x48);          /* MADCTL: MX+BGR portrait */
+    cmd(0x36); dat1(0x48);          /* MADCTL: MX+BGR */
     cmd(0x3A); dat1(0x55);          /* COLMOD: 16bit */
 
     cmd(0xB1); dat1(0x00); dat1(0x18); /* Frame rate */
@@ -157,7 +157,6 @@ static void fill_color(uint16_t color) {
 
 /* ---------- Draw image ---------- */
 #define STB_IMAGE_IMPLEMENTATION
-#define STBI_ONLY_JPEG
 #define STBI_NO_SIMD
 #include "stb_image.h"
 
@@ -175,18 +174,26 @@ static void draw_image(const char *path) {
     }
     printf("Image: %dx%d\n", w, h);
 
-    /* Stretch to fill full LCD_W x LCD_H */
-    printf("Stretch: %dx%d -> %dx%d\n", w, h, LCD_W, LCD_H);
+    /* Scale to fit LCD_W x LCD_H */
+    float sx = (float)LCD_W / w;
+    float sy = (float)LCD_H / h;
+    float s  = sx < sy ? sx : sy;
+    int dw = (int)(w * s);
+    int dh = (int)(h * s);
+    int ox = (LCD_W - dw) / 2;
+    int oy = (LCD_H - dh) / 2;
+    printf("Scaled: %dx%d offset(%d,%d)\n", dw, dh, ox, oy);
 
-    uint16_t *fb = (uint16_t *)malloc(LCD_W * LCD_H * 2);
+    /* Build full framebuffer */
+    uint16_t *fb = (uint16_t *)calloc(LCD_W * LCD_H, 2);
     if (!fb) { fprintf(stderr, "OOM\n"); return; }
 
-    for (int dy = 0; dy < LCD_H; dy++) {
-        int sy2 = dy * h / LCD_H;
-        for (int dx = 0; dx < LCD_W; dx++) {
-            int sx2 = dx * w / LCD_W;
+    for (int dy = 0; dy < dh; dy++) {
+        int sy2 = (int)(dy / s); if (sy2 >= h) sy2 = h - 1;
+        for (int dx = 0; dx < dw; dx++) {
+            int sx2 = (int)(dx / s); if (sx2 >= w) sx2 = w - 1;
             uint8_t *p = rgb + (sy2 * w + sx2) * 3;
-            fb[dy * LCD_W + dx] = rgb888_to_565(p[0], p[1], p[2]);
+            fb[(oy + dy) * LCD_W + (ox + dx)] = rgb888_to_565(p[0], p[1], p[2]);
         }
     }
     stbi_image_free(rgb);

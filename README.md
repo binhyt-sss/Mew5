@@ -202,6 +202,17 @@ Despite `ST7789 init OK (172x320) MODE0` printing successfully:
 
 Suspected cause: possible physical wiring issue or incorrect pin assignment for DC/RST. Verify with oscilloscope or logic analyzer on SCK/MOSI/CS lines during `lcd_color_test`.
 
+**Switched to ILI9341 240×320** — ST7789 abandoned. ILI9341 confirmed working with same pin assignment (SPI2/spidev1.0, DC=gpio496/Pin21, RST=gpio497/Pin22).
+
+### Bounding box overlay on ILI9341 — not working
+
+Attempts to draw detection boxes on LCD:
+- Drawing on NV21 frame (set Y=white on box edges) — not implemented fully
+- Drawing on blank RGB565 layout (`ili9341_draw_boxes_only`) — screen stays black, boxes not visible
+- Root cause: bbox coords from TDL are pixel values (0..1280 x 0..720), normalized correctly, but overlay logic not rendering
+
+**Current state**: camera frame displays on LCD correctly, hand detection logs `hands=N` to console, box overlay deferred.
+
 
 # Build guild 
 .FINAL_BUILD_GUIDE.md
