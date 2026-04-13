@@ -29,7 +29,7 @@ else
 $(error CHIP is not set)
 endif
 
-CFLAGS += -std=gnu11 -Wno-pointer-to-int-cast -fsigned-char -Wno-format-truncation -fdiagnostics-color=always -s -lpthread -latomic
+CFLAGS += -std=gnu11 -Wno-pointer-to-int-cast -fsigned-char -Wno-format-truncation -fdiagnostics-color=always -lpthread -latomic
 
 LDFLAGS += -lini -lsns_full -lsample -lteaisp -lisp -lvdec -lvenc -lawb -lae -laf -lcvi_bin -lcvi_bin_isp -lmisc -lisp_algo -lsys  -lvi -lvo -lvpss -lrgn -lgdc -ldl
 LDFLAGS += -lcvi_tdl

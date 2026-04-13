@@ -53,6 +53,38 @@ static int g_probe_retries = 3;
 static int g_probe_timeout_ms = 500;
 static int g_probe_start_delay_ms = 300;
 
+/* Classify gesture from 21 hand keypoints.
+ * Uses distance from fingertip to wrist vs MCP to wrist.
+ * If tip is farther from wrist than MCP → finger extended. */
+static float kpt_dist2(float x0, float y0, float x1, float y1) {
+  float dx = x1 - x0, dy = y1 - y0;
+  return dx*dx + dy*dy;
+}
+static int kpt_finger_extended(float *xn, float *yn, int tip, int mcp) {
+  float d_tip = kpt_dist2(xn[tip], yn[tip], xn[0], yn[0]);
+  float d_mcp = kpt_dist2(xn[mcp], yn[mcp], xn[0], yn[0]);
+  return d_tip > d_mcp;
+}
+static int kpt_classify(cvtdl_handpose21_meta_t *kp) {
+  float *xn = kp->xn, *yn = kp->yn;
+  /* tip/mcp indices: index=8/5, middle=12/9, ring=16/13, pinky=20/17 */
+  int index  = kpt_finger_extended(xn, yn, 8,  5);
+  int middle = kpt_finger_extended(xn, yn, 12, 9);
+  int ring   = kpt_finger_extended(xn, yn, 16, 13);
+  int pinky  = kpt_finger_extended(xn, yn, 20, 17);
+  /* Thumb: tip farther from index MCP than thumb MCP */
+  int thumb  = kpt_dist2(xn[4], yn[4], xn[5], yn[5]) >
+               kpt_dist2(xn[2], yn[2], xn[5], yn[5]);
+  int n = index + middle + ring + pinky;
+  if (n == 4)                          return 0; /* Open Hand */
+  if (n == 0 && !thumb)                return 1; /* Fist */
+  if (n == 1 && index)                 return 2; /* Point */
+  if (n == 2 && index && middle)       return 3; /* Victory */
+  if (n == 0 && thumb)                 return 4; /* Thumbs Up */
+  if (n == 1 && pinky && thumb)        return 8; /* Call */
+  return 1; /* default Fist */
+}
+
 void *run_lcd_thread(void *arg) {
   (void)arg;
   printf("Enter LCD thread\n");
@@ -278,7 +310,7 @@ void *run_tdl_thread(void *pHandle) {
     stHandposeMeta.width  = stFrame.stVFrame.u32Width;
     stHandposeMeta.height = stFrame.stVFrame.u32Height;
     stHandposeMeta.info   = (cvtdl_handpose21_meta_t *)
-                            calloc(stHandMeta.size, sizeof(cvtdl_handpose21_meta_t));
+                            calloc(stHandMeta.size, sizeof(cvtdl_handpose21_meta_t) * 4);
     if (stHandposeMeta.info == NULL) goto send_lcd;
     for (uint32_t i = 0; i < stHandMeta.size; i++) {
       cvtdl_bbox_t *src = &stHandMeta.info[i].bbox;
@@ -295,7 +327,9 @@ void *run_tdl_thread(void *pHandle) {
     }
 
     int best_label = -1;
-    float best_score = 0.0f;
+    float best_score = 1.0f;
+    if (stHandposeMeta.size > 0 && stHandposeMeta.info != NULL)
+      best_label = kpt_classify(&stHandposeMeta.info[0]);
 
     {
       MutexAutoLock(ResultMutex, lock);
@@ -547,9 +581,7 @@ int main(int argc, char *argv[]) {
   GOTO_IF_FAILED(CVI_TDL_OpenModel(stTDLHandle,
                  CVI_TDL_SUPPORTED_MODEL_HAND_KEYPOINT, argv[2]),
                  s32Ret, setup_tdl_fail);
-  GOTO_IF_FAILED(CVI_TDL_OpenModel(stTDLHandle,
-                 CVI_TDL_SUPPORTED_MODEL_HAND_KEYPOINT_CLASSIFICATION, argv[3]),
-                 s32Ret, setup_tdl_fail);
+  (void)argv[3]; /* cls model unused: SDK allocator incompatible with calloc */
 
   printf("Models loaded. RTSP: rtsp://192.168.42.1/h264\n");
 
