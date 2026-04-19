@@ -4,6 +4,7 @@
 
 #include <cvi_isp.h>
 #include <cvi_vi.h>
+#include <cvi_venc.h>
 #include <dlfcn.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1010,6 +1011,19 @@ void SAMPLE_TDL_Stop_VPSS(SAMPLE_TDL_VPSS_POOL_CONFIG_S *pstVPSSPoolConfig) {
   }
 }
 
+/* UnBind VI from all VPSS groups that were bound, then stop VPSS.
+ * Must be called BEFORE destroying ISP/VI so VPSS releases DMA refs
+ * to VI_DMA_BUF and ISP_SHARED_BUFFER first. */
+static void unbind_and_stop_vpss(SAMPLE_TDL_MW_CONTEXT *pstMWContext) {
+  SAMPLE_TDL_VPSS_POOL_CONFIG_S *pCfg = &pstMWContext->stVPSSPoolConfig;
+  for (uint32_t i = 0; i < pCfg->u32VpssGrpCount; i++) {
+    if (pCfg->astVpssConfig[i].bBindVI) {
+      SAMPLE_COMM_VI_UnBind_VPSS(0, pCfg->astVpssConfig[i].u32ChnBindVI, (VPSS_GRP)i);
+    }
+  }
+  SAMPLE_TDL_Stop_VPSS(pCfg);
+}
+
 void SAMPLE_TDL_Destroy_MW(SAMPLE_TDL_MW_CONTEXT *pstMWContext) {
   printf("destroy middleware\n");
   if (pstMWContext->pstRtspContext != NULL) {
@@ -1019,35 +1033,68 @@ void SAMPLE_TDL_Destroy_MW(SAMPLE_TDL_MW_CONTEXT *pstMWContext) {
     }
     CVI_RTSP_Destroy(&pstMWContext->pstRtspContext);
   }
+  /* Stop VENC receive before touching VPSS/VI */
   if (pstMWContext->u32VencChn != (CVI_U32)-1) {
-    SAMPLE_COMM_VENC_Stop(pstMWContext->u32VencChn);
+    CVI_VENC_StopRecvFrame(pstMWContext->u32VencChn);
+    CVI_VENC_ResetChn(pstMWContext->u32VencChn);
   }
 
-  SAMPLE_COMM_VI_DestroyIsp(&pstMWContext->stViConfig);
-  SAMPLE_COMM_VI_DestroyVi(&pstMWContext->stViConfig);
-  SAMPLE_TDL_Stop_VPSS(&pstMWContext->stVPSSPoolConfig);
+  /* UnBind VI→VPSS and stop VPSS BEFORE destroying VI/ISP.
+   * VPSS holds DMA references to VI_DMA_BUF; releasing them first
+   * allows the VI driver to free the ION buffers on DestroyVi. */
+  unbind_and_stop_vpss(pstMWContext);
+
+  /* Destroy VENC channel after VPSS stopped */
+  if (pstMWContext->u32VencChn != (CVI_U32)-1) {
+    CVI_VENC_DestroyChn(pstMWContext->u32VencChn);
+  }
+
+  /* VI/ISP teardown — ISP must exit BEFORE pipe ops to avoid write-after-free.
+   * In ONLINE VPSS mode CVI_VI_DisableChn is normally skipped by the SDK wrapper
+   * (offline-only guard), so we call it directly; but ISP_Exit must come first
+   * to stop the ISP writing into the pipe buffers. */
+  SAMPLE_COMM_VI_DestroyIsp(&pstMWContext->stViConfig); /* CVI_ISP_Exit first */
+  for (CVI_S32 i = 0; i < pstMWContext->stViConfig.s32WorkingViNum; i++) {
+    SAMPLE_VI_INFO_S *pInfo = &pstMWContext->stViConfig.astViInfo[i];
+    VI_PIPE ViPipe = pInfo->stPipeInfo.aPipe[0];
+    CVI_VI_DisableChn(ViPipe, 0);      /* triggers _cvi_vi_freeIonBuf → VI_DMA_BUF */
+    SAMPLE_COMM_VI_StopViPipe(pInfo);  /* CVI_VI_StopPipe */
+    CVI_VI_DestroyPipe(ViPipe);        /* frees vi_cmdq_buf */
+  }
+  SAMPLE_COMM_VI_DestroyVi(&pstMWContext->stViConfig);  /* CVI_VI_DisableDev */
 
   if (g_s32Gc2083I2cFd >= 0) {
     SAMPLE_COMM_I2C_Close(g_s32Gc2083I2cFd);
     g_s32Gc2083I2cFd = -1;
   }
 
-  CVI_SYS_Exit();
+  /* VB_Exit BEFORE SYS_Exit — free VB pool before system exit */
   CVI_VB_Exit();
+  CVI_SYS_Exit();
 }
 
 void SAMPLE_TDL_Destroy_MW_NO_RTSP(SAMPLE_TDL_MW_CONTEXT *pstMWContext) {
   printf("destroy middleware\n");
 
-  SAMPLE_COMM_VI_DestroyIsp(&pstMWContext->stViConfig);
+  /* Same ordering: UnBind+Stop VPSS before destroying VI/ISP */
+  unbind_and_stop_vpss(pstMWContext);
+
+  SAMPLE_COMM_VI_DestroyIsp(&pstMWContext->stViConfig); /* ISP_Exit first */
+  for (CVI_S32 i = 0; i < pstMWContext->stViConfig.s32WorkingViNum; i++) {
+    SAMPLE_VI_INFO_S *pInfo = &pstMWContext->stViConfig.astViInfo[i];
+    VI_PIPE ViPipe = pInfo->stPipeInfo.aPipe[0];
+    CVI_VI_DisableChn(ViPipe, 0);
+    SAMPLE_COMM_VI_StopViPipe(pInfo);
+    CVI_VI_DestroyPipe(ViPipe);
+  }
   SAMPLE_COMM_VI_DestroyVi(&pstMWContext->stViConfig);
-  SAMPLE_TDL_Stop_VPSS(&pstMWContext->stVPSSPoolConfig);
 
   if (g_s32Gc2083I2cFd >= 0) {
     SAMPLE_COMM_I2C_Close(g_s32Gc2083I2cFd);
     g_s32Gc2083I2cFd = -1;
   }
 
-  CVI_SYS_Exit();
+  /* VB_Exit BEFORE SYS_Exit */
   CVI_VB_Exit();
+  CVI_SYS_Exit();
 }

@@ -32,7 +32,11 @@ static int      g_lcd_buf_h = 0;
 static int      g_lcd_buf_stride = 0;
 static float    g_lcd_boxes[LCD_MAX_BOXES * 4];           /* x0,y0,x1,y1 normalized */
 static float    g_lcd_kpts[LCD_MAX_BOXES * LCD_KPT_PER_HAND * 2]; /* x,y normalized per kpt */
+static const char *g_lcd_labels[LCD_MAX_BOXES];           /* gesture name per box, or NULL */
 static int      g_lcd_nboxes = 0;
+/* Face detection overlay — shown when Open Hand gesture is active */
+static float    g_lcd_face_boxes[LCD_MAX_BOXES * 4];
+static int      g_lcd_nfaces = 0;
 static bool     g_lcd_buf_ready = false;
 static pthread_mutex_t g_lcd_mutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t  g_lcd_cond  = PTHREAD_COND_INITIALIZER;
@@ -96,18 +100,29 @@ void *run_lcd_thread(void *arg) {
     if (bExit) { pthread_mutex_unlock(&g_lcd_mutex); break; }
     int w = g_lcd_buf_w, h = g_lcd_buf_h, stride = g_lcd_buf_stride;
     int nboxes = g_lcd_nboxes;
+    int nfaces = g_lcd_nfaces;
     float boxes[LCD_MAX_BOXES * 4];
     float kpts[LCD_MAX_BOXES * LCD_KPT_PER_HAND * 2];
+    const char *labels[LCD_MAX_BOXES];
+    float face_boxes[LCD_MAX_BOXES * 4];
     if (nboxes > 0) {
-      memcpy(boxes, g_lcd_boxes, nboxes * 4 * sizeof(float));
-      memcpy(kpts,  g_lcd_kpts,  nboxes * LCD_KPT_PER_HAND * 2 * sizeof(float));
+      memcpy(boxes,  g_lcd_boxes,  nboxes * 4 * sizeof(float));
+      memcpy(kpts,   g_lcd_kpts,   nboxes * LCD_KPT_PER_HAND * 2 * sizeof(float));
+      memcpy(labels, g_lcd_labels, nboxes * sizeof(const char *));
     }
+    if (nfaces > 0)
+      memcpy(face_boxes, g_lcd_face_boxes, nfaces * 4 * sizeof(float));
     g_lcd_buf_ready = false;
     pthread_mutex_unlock(&g_lcd_mutex);
     frame_count++;
+    /* Draw hand boxes + keypoints (green/red) — renders NV21 + flushes to LCD */
     ili9341_draw_nv21_with_boxes_kpts(g_lcd_buf, w, h, stride,
                                       boxes, nboxes, 0x07E0,
-                                      kpts, LCD_KPT_PER_HAND, 0xF800);
+                                      kpts, LCD_KPT_PER_HAND, 0xF800,
+                                      labels, 0xFFFF);
+    /* Overlay face boxes in yellow on top (no re-render, second SPI flush) */
+    if (nfaces > 0)
+      ili9341_overlay_boxes(face_boxes, nfaces, 0xFFE0);
   }
   printf("Exit LCD thread\n");
   pthread_exit(NULL);
@@ -295,7 +310,10 @@ void *run_tdl_thread(void *pHandle) {
       goto inf_error;
     }
 
-    cvtdl_handpose21_meta_ts stHandposeMeta;
+    /* Static handpose meta — avoids calloc/SDK-allocator mismatch.
+     * Reused every frame, never freed between frames. */
+    static cvtdl_handpose21_meta_t s_kpt_info[LCD_MAX_BOXES * 4];
+    static cvtdl_handpose21_meta_ts stHandposeMeta;
     memset(&stHandposeMeta, 0, sizeof(cvtdl_handpose21_meta_ts));
 
     if (stHandMeta.size == 0) {
@@ -305,14 +323,15 @@ void *run_tdl_thread(void *pHandle) {
       goto send_lcd;
     }
 
-    /* HandKeypoint needs size + bbox pre-filled; use calloc, free with CVI_TDL_Free */
-    stHandposeMeta.size   = stHandMeta.size;
+    /* Pre-fill bbox info into static buffer — no heap alloc */
+    uint32_t nHands = stHandMeta.size;
+    if (nHands > LCD_MAX_BOXES) nHands = LCD_MAX_BOXES;
+    memset(s_kpt_info, 0, nHands * sizeof(cvtdl_handpose21_meta_t) * 4);
+    stHandposeMeta.size   = nHands;
     stHandposeMeta.width  = stFrame.stVFrame.u32Width;
     stHandposeMeta.height = stFrame.stVFrame.u32Height;
-    stHandposeMeta.info   = (cvtdl_handpose21_meta_t *)
-                            calloc(stHandMeta.size, sizeof(cvtdl_handpose21_meta_t) * 4);
-    if (stHandposeMeta.info == NULL) goto send_lcd;
-    for (uint32_t i = 0; i < stHandMeta.size; i++) {
+    stHandposeMeta.info   = s_kpt_info;
+    for (uint32_t i = 0; i < nHands; i++) {
       cvtdl_bbox_t *src = &stHandMeta.info[i].bbox;
       stHandposeMeta.info[i].bbox_x = src->x1;
       stHandposeMeta.info[i].bbox_y = src->y1;
@@ -330,6 +349,26 @@ void *run_tdl_thread(void *pHandle) {
     float best_score = 1.0f;
     if (stHandposeMeta.size > 0 && stHandposeMeta.info != NULL)
       best_label = kpt_classify(&stHandposeMeta.info[0]);
+
+    /* Face detection — only when Open Hand (label 0) is detected */
+    static cvtdl_face_t stFaceMeta = {0};
+    CVI_TDL_Free(&stFaceMeta);
+    if (best_label == 0) {
+      CVI_S32 fd_ret = CVI_TDL_FaceDetection(pstTDLHandle, &stFrame,
+                            CVI_TDL_SUPPORTED_MODEL_SCRFDFACE, &stFaceMeta);
+      if (fd_ret == CVI_SUCCESS && stFaceMeta.size > 0) {
+        printf("[Face] %u face(s) detected:", stFaceMeta.size);
+        for (uint32_t fi = 0; fi < stFaceMeta.size; fi++)
+          printf("  [%u] (%.0f,%.0f)-(%.0f,%.0f) conf=%.2f",
+                 fi,
+                 stFaceMeta.info[fi].bbox.x1, stFaceMeta.info[fi].bbox.y1,
+                 stFaceMeta.info[fi].bbox.x2, stFaceMeta.info[fi].bbox.y2,
+                 stFaceMeta.info[fi].bbox.score);
+        printf("\n");
+      } else if (fd_ret == CVI_SUCCESS) {
+        printf("[Face] Open Hand — no face\n");
+      }
+    }
 
     {
       MutexAutoLock(ResultMutex, lock);
@@ -361,11 +400,16 @@ void *run_tdl_thread(void *pHandle) {
               if (n > LCD_MAX_BOXES) n = LCD_MAX_BOXES;
               float fw = (float)vf->u32Width;
               float fh = (float)vf->u32Height;
+              const char *label = NULL;
+              if (g_stResult.gesture_label >= 0 &&
+                  g_stResult.gesture_label < (int)GESTURE_COUNT)
+                label = gesture_names[g_stResult.gesture_label];
               for (uint32_t bi = 0; bi < n; bi++) {
                 g_lcd_boxes[bi*4+0] = g_stResult.stHandMeta.info[bi].bbox.x1 / fw;
                 g_lcd_boxes[bi*4+1] = g_stResult.stHandMeta.info[bi].bbox.y1 / fh;
                 g_lcd_boxes[bi*4+2] = g_stResult.stHandMeta.info[bi].bbox.x2 / fw;
                 g_lcd_boxes[bi*4+3] = g_stResult.stHandMeta.info[bi].bbox.y2 / fh;
+                g_lcd_labels[bi] = label;
               }
               g_lcd_nboxes = (int)n;
             }
@@ -386,6 +430,22 @@ void *run_tdl_thread(void *pHandle) {
               }
             }
           }
+          /* Face boxes — populated when Open Hand gesture active */
+          g_lcd_nfaces = 0;
+          if (stFaceMeta.size > 0) {
+            uint32_t nf = stFaceMeta.size;
+            if (nf > LCD_MAX_BOXES) nf = LCD_MAX_BOXES;
+            float fw = (float)vf->u32Width;
+            float fh = (float)vf->u32Height;
+            for (uint32_t fi = 0; fi < nf; fi++) {
+              g_lcd_face_boxes[fi*4+0] = stFaceMeta.info[fi].bbox.x1 / fw;
+              g_lcd_face_boxes[fi*4+1] = stFaceMeta.info[fi].bbox.y1 / fh;
+              g_lcd_face_boxes[fi*4+2] = stFaceMeta.info[fi].bbox.x2 / fw;
+              g_lcd_face_boxes[fi*4+3] = stFaceMeta.info[fi].bbox.y2 / fh;
+            }
+            g_lcd_nfaces = (int)nf;
+          }
+
           g_lcd_buf_ready  = true;
           pthread_cond_signal(&g_lcd_cond);
         }
@@ -396,7 +456,10 @@ void *run_tdl_thread(void *pHandle) {
 
   inf_error:
     CVI_TDL_Free(&stHandMeta);
-    CVI_TDL_FreeHandPoses(&stHandposeMeta);
+    CVI_TDL_Free(&stFaceMeta);
+    /* stHandposeMeta.info is static — do NOT free, just clear pointer */
+    stHandposeMeta.info = NULL;
+    stHandposeMeta.size = 0;
     CVI_VPSS_ReleaseChnFrame(0, g_tdl_vpss_chn, &stFrame);
   }
 
@@ -513,6 +576,11 @@ int main(int argc, char *argv[]) {
   signal(SIGINT, SampleHandleSig);
   signal(SIGTERM, SampleHandleSig);
 
+  /* This app uses LCD display only, not RTSP streaming.
+   * Disabling VENC avoids allocating VENC_0_BitStreamBuffer (4MB ION)
+   * which is never freed by the kernel driver on exit. */
+  setenv("SAMPLE_TDL_DISABLE_VENC", "1", 0);
+
   SAMPLE_TDL_MW_CONFIG_S stMWConfig = {0};
   CVI_S32 s32Ret = get_middleware_config(&stMWConfig);
   if (s32Ret != CVI_SUCCESS) {
@@ -559,8 +627,8 @@ int main(int argc, char *argv[]) {
     g_tdl_vpss_chn = VPSS_CHN0;
     printf("Warning: VPSS CHN1 unavailable, fallback TDL to CHN0\n");
   } else {
-    g_tdl_vpss_chn = VPSS_CHN1;
-    printf("Warning: both VPSS channels failed probe, keep default chn mapping\n");
+    g_tdl_vpss_chn = VPSS_CHN0;
+    printf("Warning: both VPSS channels failed probe, fallback TDL to CHN0\n");
   }
 
   printf("VPSS mapping: venc->chn%d, tdl->chn%d\n", g_venc_vpss_chn,
@@ -581,7 +649,15 @@ int main(int argc, char *argv[]) {
   GOTO_IF_FAILED(CVI_TDL_OpenModel(stTDLHandle,
                  CVI_TDL_SUPPORTED_MODEL_HAND_KEYPOINT, argv[2]),
                  s32Ret, setup_tdl_fail);
-  (void)argv[3]; /* cls model unused: SDK allocator incompatible with calloc */
+  (void)argv[3]; /* cls model: SDK HandKeypointClassification crashes internally */
+
+  /* Face detection — triggered when Open Hand gesture detected */
+  const char *face_model = "/mnt/cvimodel/scrfd_768_432_int8_1x.cvimodel";
+  s32Ret = CVI_TDL_OpenModel(stTDLHandle, CVI_TDL_SUPPORTED_MODEL_SCRFDFACE, face_model);
+  if (s32Ret != CVI_SUCCESS)
+    printf("Warning: face model load failed (0x%x), face detection disabled\n", s32Ret);
+  else
+    printf("Face detection model loaded: %s\n", face_model);
 
   printf("Models loaded. RTSP: rtsp://192.168.42.1/h264\n");
 

@@ -29,10 +29,12 @@ uint16_t ili9341_yuv_to_565(uint8_t y, int8_t u, int8_t v);
 void ili9341_draw_nv21_with_boxes(const uint8_t *nv21, int w, int h, int stride,
                                   const float *boxes, int nboxes, uint16_t box_color);
 
+/* labels: array of nboxes C-strings (may be NULL to skip text), label_color: RGB565 */
 void ili9341_draw_nv21_with_boxes_kpts(const uint8_t *nv21, int w, int h, int stride,
                                        const float *boxes, int nboxes, uint16_t box_color,
                                        const float *kpts, int nkpts_per_hand,
-                                       uint16_t kpt_color);
+                                       uint16_t kpt_color,
+                                       const char **labels, uint16_t label_color);
 
 /* Draw blank layout with bounding boxes only (no camera frame).
  * boxes: flat [x0,y0,x1,y1] normalized [0..1], nboxes entries. */
@@ -44,3 +46,8 @@ void ili9341_draw_boxes_only(const float *boxes, int nboxes,
  * box_color565: e.g. 0x07E0 = green */
 void ili9341_draw_nv21_boxes(const uint8_t *nv21, int w, int h, int stride,
                              const float *boxes, int nboxes, uint16_t box_color565);
+
+/* Overlay colored boxes on the existing internal framebuffer (no NV21 re-render),
+ * then flush to LCD.  Call after ili9341_draw_nv21_with_boxes_kpts to add a
+ * second layer of boxes (different color) on the same rendered frame. */
+void ili9341_overlay_boxes(const float *boxes, int nboxes, uint16_t color565);
