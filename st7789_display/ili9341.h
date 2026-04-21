@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include "face_anim.h"
 
 #define LCD_W 320
 #define LCD_H 240
@@ -51,3 +52,6 @@ void ili9341_draw_nv21_boxes(const uint8_t *nv21, int w, int h, int stride,
  * then flush to LCD.  Call after ili9341_draw_nv21_with_boxes_kpts to add a
  * second layer of boxes (different color) on the same rendered frame. */
 void ili9341_overlay_boxes(const float *boxes, int nboxes, uint16_t color565);
+
+/* Render cute face animation frame from face_anim state. */
+void ili9341_render_face(const face_anim_t *f);

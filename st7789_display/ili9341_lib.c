@@ -2,11 +2,16 @@
 
 #include <fcntl.h>
 #include <linux/spi/spidev.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 #define SPI_DEV   "/dev/spidev0.0"
 #define GPIO_DC   503   /* GP23 = Pin 21 */
@@ -208,6 +213,278 @@ uint16_t ili9341_yuv_to_565(uint8_t y, int8_t u, int8_t v) {
 
 /* Static framebuffer: LCD_W * LCD_H * 2 bytes = 320*240*2 = 153600 bytes */
 static uint16_t s_fb[LCD_W * LCD_H];
+
+static float clampf_local(float v, float lo, float hi) {
+    if (v < lo) return lo;
+    if (v > hi) return hi;
+    return v;
+}
+
+static inline void fb_set_px(int x, int y, uint16_t color) {
+    if (x < 0 || x >= LCD_W || y < 0 || y >= LCD_H) return;
+    uint8_t *p = (uint8_t *)&s_fb[y * LCD_W + x];
+    p[0] = color >> 8;
+    p[1] = color & 0xFF;
+}
+
+static void fb_clear(uint16_t color) {
+    uint8_t hi = color >> 8;
+    uint8_t lo = color & 0xFF;
+    for (int y = 0; y < LCD_H; y++) {
+        for (int x = 0; x < LCD_W; x++) {
+            uint8_t *p = (uint8_t *)&s_fb[y * LCD_W + x];
+            p[0] = hi;
+            p[1] = lo;
+        }
+    }
+}
+
+static void fb_flush(void) {
+    set_window(0, 0, LCD_W - 1, LCD_H - 1);
+    gpio_set(GPIO_DC, 1);
+    const uint8_t *p = (const uint8_t *)s_fb;
+    int rem = LCD_W * LCD_H * 2;
+    while (rem > 0) {
+        int n = rem > 4096 ? 4096 : rem;
+        spi_send(p, n);
+        p += n;
+        rem -= n;
+    }
+}
+
+static void fb_hline(int x0, int x1, int y, uint16_t color) {
+    if (y < 0 || y >= LCD_H) return;
+    if (x0 > x1) {
+        int t = x0;
+        x0 = x1;
+        x1 = t;
+    }
+    if (x1 < 0 || x0 >= LCD_W) return;
+    if (x0 < 0) x0 = 0;
+    if (x1 >= LCD_W) x1 = LCD_W - 1;
+    for (int x = x0; x <= x1; x++) fb_set_px(x, y, color);
+}
+
+static void fb_fill_circle(int cx, int cy, int r, uint16_t color) {
+    if (r <= 0) return;
+    int rr = r * r;
+    for (int dy = -r; dy <= r; dy++) {
+        int y = cy + dy;
+        if (y < 0 || y >= LCD_H) continue;
+        for (int dx = -r; dx <= r; dx++) {
+            if (dx * dx + dy * dy > rr) continue;
+            fb_set_px(cx + dx, y, color);
+        }
+    }
+}
+
+static void fb_fill_ellipse(int cx, int cy, int rx, int ry, uint16_t color) {
+    if (rx <= 0 || ry <= 0) return;
+    long long rx2 = (long long)rx * rx;
+    long long ry2 = (long long)ry * ry;
+    long long rhs = rx2 * ry2;
+    for (int dy = -ry; dy <= ry; dy++) {
+        int y = cy + dy;
+        if (y < 0 || y >= LCD_H) continue;
+        for (int dx = -rx; dx <= rx; dx++) {
+            long long lhs = (long long)dx * dx * ry2 + (long long)dy * dy * rx2;
+            if (lhs > rhs) continue;
+            fb_set_px(cx + dx, y, color);
+        }
+    }
+}
+
+static void fb_arc(int cx, int cy, int r, float start_deg, float end_deg,
+                   int thickness, uint16_t color) {
+    if (r <= 0 || thickness <= 0) return;
+    if (end_deg < start_deg) {
+        float t = start_deg;
+        start_deg = end_deg;
+        end_deg = t;
+    }
+    int dot_r = thickness / 2;
+    if (dot_r < 1) dot_r = 1;
+    for (float a = start_deg; a <= end_deg; a += 1.0f) {
+        float rad = a * (float)M_PI / 180.0f;
+        int x = cx + (int)lroundf(cosf(rad) * r);
+        int y = cy + (int)lroundf(sinf(rad) * r);
+        fb_fill_circle(x, y, dot_r, color);
+    }
+}
+
+static void fb_eyebrow(int x0, int y0, int len, float slope,
+                       int thickness, uint16_t color) {
+    if (len <= 0 || thickness <= 0) return;
+    int rad = thickness / 2;
+    if (rad < 1) rad = 1;
+    for (int i = 0; i < len; i++) {
+        int x = x0 + i;
+        int y = y0 + (int)lroundf((float)i * slope);
+        fb_fill_circle(x, y, rad, color);
+    }
+}
+
+static void fb_star(int cx, int cy, int r, uint16_t color) {
+    if (r <= 0) return;
+    for (int i = -r; i <= r; i++) {
+        fb_set_px(cx + i, cy, color);
+        fb_set_px(cx, cy + i, color);
+        fb_set_px(cx + i, cy + i, color);
+        fb_set_px(cx + i, cy - i, color);
+    }
+}
+
+static void fb_draw_eye(int cx, int cy, int rx, int ry,
+                        float eye_open, float pupil_x, float pupil_y,
+                        int star_pupil, int pupil_r,
+                        uint16_t eye_white, uint16_t ink) {
+    int dyn_ry = (int)lroundf((float)ry * eye_open);
+    if (dyn_ry < 2) {
+        fb_hline(cx - rx, cx + rx, cy, ink);
+        return;
+    }
+    fb_fill_ellipse(cx, cy, rx, dyn_ry, eye_white);
+    int px = cx + (int)lroundf(pupil_x);
+    int py = cy + (int)lroundf(pupil_y * eye_open);
+    if (star_pupil) {
+        fb_star(px, py, pupil_r, ink);
+    } else {
+        fb_fill_circle(px, py, pupil_r, ink);
+    }
+    /* shine highlight: top-right of pupil */
+    int hx = px + (int)(pupil_r * 0.42f);
+    int hy = py - (int)(pupil_r * 0.48f);
+    int hr = (pupil_r + 3) / 5;
+    if (hr < 2) hr = 2;
+    fb_fill_circle(hx, hy, hr, eye_white);
+}
+
+void ili9341_render_face(const face_anim_t *f) {
+    if (f == NULL) return;
+
+    /* Layout: no face circle — floating eyes + mouth on dark bg */
+    const int eye_lx = 95,  eye_rx = 225, eye_y = 108;
+    const int eye_rw = 42,  eye_rh = 46;
+    const int mouth_x = 160, mouth_y = 182;
+
+    const uint16_t bg    = 0x0821;  /* dark navy */
+    const uint16_t white = 0xFFFF;
+    const uint16_t ink   = 0x0000;  /* pupil black */
+    const uint16_t blush = 0xFCB5;  /* soft pink */
+
+    int pupil_r;
+    switch (f->expr) {
+        case EXPR_SURPRISED: pupil_r = 24; break;
+        case EXPR_COOL:
+        case EXPR_CONTENT:   pupil_r = 15; break;
+        default:             pupil_r = 20; break;
+    }
+
+    float open_l = f->eye_open;
+    float open_r = f->eye_open;
+    float px = f->eye_x;
+    float py = f->eye_y;
+
+    switch (f->expr) {
+        case EXPR_WINK:      open_l *= 0.10f; break;
+        case EXPR_SURPRISED: open_l *= 1.15f; open_r *= 1.15f; break;
+        case EXPR_CONTENT:   open_l *= 0.65f; open_r *= 0.65f; break;
+        case EXPR_COOL:      open_l *= 0.40f; open_r *= 0.40f; break;
+        case EXPR_SAD:       open_l *= 0.80f; open_r *= 0.80f; py += 3.0f; break;
+        case EXPR_CURIOUS:   px += (px >= 0.0f) ? 5.0f : -5.0f; break;
+        case EXPR_ANGRY:     py -= 3.0f; break;
+        default: break;
+    }
+    open_l = clampf_local(open_l, 0.05f, 1.20f);
+    open_r = clampf_local(open_r, 0.05f, 1.20f);
+    px = clampf_local(px, -20.0f, 20.0f);
+    py = clampf_local(py, -20.0f, 20.0f);
+
+    fb_clear(bg);
+
+    /* Blush cheeks */
+    if (f->expr == EXPR_HAPPY || f->expr == EXPR_EXCITED || f->expr == EXPR_WINK) {
+        fb_fill_ellipse(46,  150, 24, 11, blush);
+        fb_fill_ellipse(274, 150, 24, 11, blush);
+    }
+
+    /* Eyebrows */
+    switch (f->expr) {
+        case EXPR_ANGRY:
+            fb_eyebrow(55, 72, 75, 0.18f,  4, white);
+            fb_eyebrow(195, 85, 75, -0.18f, 4, white);
+            break;
+        case EXPR_SAD:
+            fb_eyebrow(55, 80, 75, -0.16f, 3, white);
+            fb_eyebrow(195, 68, 75,  0.16f, 3, white);
+            break;
+        case EXPR_SURPRISED:
+            fb_eyebrow(55, 52, 75, 0.0f, 4, white);
+            fb_eyebrow(195, 52, 75, 0.0f, 4, white);
+            break;
+        case EXPR_CURIOUS:
+            fb_eyebrow(55, 60, 75, -0.10f, 3, white);
+            fb_eyebrow(195, 72, 75, -0.05f, 3, white);
+            break;
+        default: break;
+    }
+
+    /* Eyes */
+    int star = (f->expr == EXPR_EXCITED);
+    if (f->expr == EXPR_COOL) {
+        int sq_ry = (int)(eye_rh * 0.38f);
+        fb_fill_ellipse(eye_lx, eye_y, eye_rw, sq_ry, white);
+        fb_fill_ellipse(eye_rx, eye_y, eye_rw, sq_ry, white);
+        for (int t = -1; t <= 1; t++) {
+            fb_hline(eye_lx - eye_rw, eye_lx + eye_rw, eye_y + t, ink);
+            fb_hline(eye_rx - eye_rw, eye_rx + eye_rw, eye_y + t, ink);
+        }
+    } else {
+        fb_draw_eye(eye_lx, eye_y, eye_rw, eye_rh, open_l, px, py, star, pupil_r, white, ink);
+        fb_draw_eye(eye_rx, eye_y, eye_rw, eye_rh, open_r, px, py, star, pupil_r, white, ink);
+    }
+
+    /* Mouth */
+    switch (f->expr) {
+        case EXPR_HAPPY:
+        case EXPR_WINK:
+            /* ω cat mouth: two upward humps */
+            fb_arc(145, mouth_y, 16, 180.0f, 360.0f, 3, white);
+            fb_arc(175, mouth_y, 16, 180.0f, 360.0f, 3, white);
+            break;
+        case EXPR_EXCITED:
+            /* wide W smile */
+            fb_arc(130, mouth_y, 24, 175.0f, 355.0f, 4, white);
+            fb_arc(190, mouth_y, 24, 185.0f, 365.0f, 4, white);
+            break;
+        case EXPR_ANGRY:
+            fb_arc(mouth_x, mouth_y + 18, 32, 200.0f, 340.0f, 4, white);
+            break;
+        case EXPR_SAD:
+            fb_arc(mouth_x, mouth_y + 14, 28, 205.0f, 335.0f, 4, white);
+            break;
+        case EXPR_SURPRISED:
+            fb_fill_ellipse(mouth_x, mouth_y + 6, 16, 20, white);
+            fb_fill_ellipse(mouth_x, mouth_y + 6,  9, 13, bg);
+            break;
+        case EXPR_CONTENT:
+            fb_arc(mouth_x, mouth_y + 4, 24, 20.0f, 160.0f, 3, white);
+            break;
+        case EXPR_COOL:
+            fb_arc(mouth_x + 14, mouth_y + 4, 26, 25.0f, 140.0f, 3, white);
+            fb_hline(mouth_x - 18, mouth_x + 10, mouth_y - 2, white);
+            break;
+        case EXPR_CURIOUS:
+            fb_hline(mouth_x - 22, mouth_x + 22, mouth_y, white);
+            break;
+        case EXPR_IDLE:
+        default:
+            fb_hline(mouth_x - 26, mouth_x + 26, mouth_y, white);
+            break;
+    }
+
+    fb_flush();
+}
 
 void ili9341_draw_nv21(const uint8_t *nv21, int w, int h, int stride) {
     const uint8_t *y_plane  = nv21;

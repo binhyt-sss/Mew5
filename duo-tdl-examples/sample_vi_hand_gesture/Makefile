@@ -36,9 +36,10 @@ LDFLAGS += -lcvi_tdl
 LDFLAGS += -lopencv_core -lopencv_imgproc -lopencv_imgcodecs
 LDFLAGS += -lcvikernel -lcvimath -lcviruntime
 LDFLAGS += -lcvi_rtsp
+LDFLAGS += -lm
 
 LCD_DIR ?= $(abspath $(COMMON_DIR)/../../st7789_display)
-LCD_SRC = $(LCD_DIR)/ili9341_lib.c
+LCD_SRC = $(LCD_DIR)/ili9341_lib.c $(LCD_DIR)/face_anim.c
 LCD_OBJ = $(LCD_SRC:.c=.o)
 
 CFLAGS += -I$(LCD_DIR)
@@ -62,4 +63,3 @@ clean:
 	@rm -rf $(LCD_OBJ)
 	@rm -rf $(OBJS)
 	@rm -rf $(TARGET)
-
