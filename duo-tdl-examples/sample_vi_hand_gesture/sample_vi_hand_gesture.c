@@ -456,7 +456,7 @@ void *run_tdl_thread(void *pHandle) {
 
   inf_error:
     CVI_TDL_Free(&stHandMeta);
-    CVI_TDL_Free(&stFaceMeta);
+    /* stFaceMeta freed at top of next iteration (line above CVI_TDL_FaceDetection) */
     /* stHandposeMeta.info is static — do NOT free, just clear pointer */
     stHandposeMeta.info = NULL;
     stHandposeMeta.size = 0;
@@ -523,7 +523,6 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
 
   int bindVB = read_env_int("SAMPLE_TDL_VPSS_ATTACH_VB", 0, 0, 1);
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].bBind = (bindVB == 1);
-  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].bBind = (bindVB == 1);
   printf("VPSS attach VB pools: %s\n", bindVB == 1 ? "enabled" : "disabled");
 
   SAMPLE_TDL_VPSS_CONFIG_S *pstVpssConfig = &pstMWConfig->stVPSSPoolConfig.astVpssConfig[0];
@@ -603,9 +602,7 @@ int main(int argc, char *argv[]) {
     printf("ST7789 LCD init failed (no LCD attached?), continuing without display\n");
   }
 
-  const char *pszDisableRTSP = getenv("SAMPLE_TDL_DISABLE_RTSP");
-  bool bDisableRTSP = (pszDisableRTSP != NULL && strcmp(pszDisableRTSP, "1") == 0);
-  if (bDisableRTSP) {
+  if (getenv("SAMPLE_TDL_DISABLE_RTSP") != NULL && strcmp(getenv("SAMPLE_TDL_DISABLE_RTSP"), "1") == 0) {
     printf("SAMPLE_TDL_DISABLE_RTSP=1, run without RTSP output\n");
   }
 
