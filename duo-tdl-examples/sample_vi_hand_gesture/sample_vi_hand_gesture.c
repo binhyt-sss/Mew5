@@ -483,7 +483,7 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
   SAMPLE_TDL_VPSS_CONFIG_S *pstVpssConfig = &pstMWConfig->stVPSSPoolConfig.astVpssConfig[0];
   pstVpssConfig->bBindVI = true;
 
-  int vpssDev = read_env_int("SAMPLE_TDL_VPSS_DEV", 1, 0, 1);
+  int vpssDev = read_env_int("SAMPLE_TDL_VPSS_DEV", 0, 0, 1);
   printf("VPSS physical device: %d\n", vpssDev);
 
   VPSS_GRP_DEFAULT_HELPER2(&pstVpssConfig->stVpssGrpAttr, stSensorSize.u32Width,
@@ -579,8 +579,10 @@ int main(int argc, char *argv[]) {
     g_tdl_vpss_chn = VPSS_CHN0;
     printf("Warning: VPSS CHN1 unavailable, fallback TDL to CHN0\n");
   } else {
-    g_tdl_vpss_chn = VPSS_CHN0;
-    printf("Warning: both VPSS channels failed probe, fallback TDL to CHN0\n");
+    printf("Error: both VPSS channels failed probe (ch0=%#x ch1=%#x), abort.\n",
+           probeCh0, probeCh1);
+    s32Ret = -1;
+    goto create_tdl_fail;
   }
 
   printf("VPSS mapping: venc->chn%d, tdl->chn%d\n", g_venc_vpss_chn,
