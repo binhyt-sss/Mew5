@@ -465,17 +465,25 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
       .u32Height = 720,
   };
 
-  /* VB pool must match VPSS CHN output format (VI_PIXEL_FORMAT = NV21).
-   * VPSS looks for blocks in the common pool by exact size; a BGR block
-   * (2.7MB) does not satisfy a NV21 request (1.3MB) → BUF_EMPTY.
-   * Need CHN0_depth(2) + CHN1_depth(2) + 1 spare = 5 blocks minimum. */
-  pstMWConfig->stVBPoolConfig.u32VBPoolCount = 1;
+  /* Pool 0: NV21 1280×720 for main VPSS CHN output (camera pipeline).
+   * CHN0_depth(2) + CHN1_depth(2) + venc-held(1) + tdl-held(1) = 6 blocks. */
+  pstMWConfig->stVBPoolConfig.u32VBPoolCount = 2;
 
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].enFormat = PIXEL_FORMAT_NV21;
-  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 5;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 6;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Height = stVencSize.u32Height;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Width = stVencSize.u32Width;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].bBind = false;
+
+  /* Pool 1: for TDL internal VPSS preprocessing output (RGB888 planar 640×384).
+   * NV21 1280×720 blocks (1.38MB) comfortably hold the 640×384 RGB888 output
+   * (737,280 bytes). vb_get_block_with_id allows size <= blk_size.
+   * 3 blocks: 1 in VPSS output depth + 1 in-flight for inference + 1 spare. */
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].enFormat = PIXEL_FORMAT_NV21;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].u32BlkCount = 3;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].u32Height = stVencSize.u32Height;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].u32Width = stVencSize.u32Width;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[1].bBind = false;
 
   pstMWConfig->stVPSSPoolConfig.u32VpssGrpCount = 1;
 #ifndef CV186X
@@ -598,7 +606,7 @@ int main(int argc, char *argv[]) {
 
   cvitdl_handle_t stTDLHandle = NULL;
   GOTO_IF_FAILED(CVI_TDL_CreateHandle2(&stTDLHandle, 1, 0), s32Ret, create_tdl_fail);
-  GOTO_IF_FAILED(CVI_TDL_SetVBPool(stTDLHandle, 0, 0), s32Ret, create_service_fail);
+  GOTO_IF_FAILED(CVI_TDL_SetVBPool(stTDLHandle, 0, 1), s32Ret, create_service_fail);
   CVI_TDL_SetVpssTimeout(stTDLHandle, 1000);
 
   cvitdl_service_handle_t stServiceHandle = NULL;
