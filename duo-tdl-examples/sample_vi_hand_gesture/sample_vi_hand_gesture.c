@@ -272,13 +272,22 @@ void *run_tdl_thread(void *pHandle) {
   VIDEO_FRAME_INFO_S stFrame;
   CVI_S32 s32Ret;
 
+  int consec_fail = 0;
   while (bExit == false) {
     s32Ret = CVI_VPSS_GetChnFrame(0, g_tdl_vpss_chn, &stFrame, 2000);
     if (s32Ret != CVI_SUCCESS) {
-      printf("CVI_VPSS_GetChnFrame failed with %#x\n", s32Ret);
+      consec_fail++;
+      if (consec_fail % 10 == 1)
+        printf("CVI_VPSS_GetChnFrame failed %d× (last=%#x)\n", consec_fail, s32Ret);
+      if (consec_fail >= 30) {
+        printf("VPSS frame stall: abort after %d consecutive failures\n", consec_fail);
+        bExit = true;
+        break;
+      }
       usleep(100000);
       continue;
     }
+    consec_fail = 0;
 
     static int dbg_count = 0;
     if (dbg_count++ < 3)
