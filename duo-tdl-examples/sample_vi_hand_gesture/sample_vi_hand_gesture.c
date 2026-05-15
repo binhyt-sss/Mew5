@@ -465,15 +465,14 @@ CVI_S32 get_middleware_config(SAMPLE_TDL_MW_CONFIG_S *pstMWConfig) {
       .u32Height = 720,
   };
 
-  /* Memory budget (ION ~78MB, ISP ~15MB, PLAT_SYS_INIT pool ~25MB):
-   * Only allocate what's needed beyond PLAT pool:
-   * Pool[0]: BGR planar for TDL inference — 2 blocks = ~5.5MB
-   * VPSS uses PLAT_SYS_INIT pool (3110400 x8) directly via PLAT_VPSS_INIT.
-   * Total extra: ~5.5MB. Leaves ~32MB for NPU. */
+  /* VB pool must match VPSS CHN output format (VI_PIXEL_FORMAT = NV21).
+   * VPSS looks for blocks in the common pool by exact size; a BGR block
+   * (2.7MB) does not satisfy a NV21 request (1.3MB) → BUF_EMPTY.
+   * Need CHN0_depth(2) + CHN1_depth(2) + 1 spare = 5 blocks minimum. */
   pstMWConfig->stVBPoolConfig.u32VBPoolCount = 1;
 
-  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].enFormat = PIXEL_FORMAT_BGR_888_PLANAR;
-  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 1;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].enFormat = PIXEL_FORMAT_NV21;
+  pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32BlkCount = 5;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Height = stVencSize.u32Height;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].u32Width = stVencSize.u32Width;
   pstMWConfig->stVBPoolConfig.astVBPoolSetup[0].bBind = false;
