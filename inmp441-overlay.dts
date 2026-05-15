@@ -1,0 +1,46 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&i2s_rx>;
+		__overlay__ {
+			#address-cells = <2>;
+			#size-cells = <2>;
+
+			inmp441_codec: codec@0 {
+				compatible = "invensense,inmp441";
+				reg = <0x00 0x00>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			sound_inmp441 {
+				compatible = "simple-audio-card";
+				simple-audio-card,name = "INMP441-I2S";
+				simple-audio-card,format = "i2s";
+				simple-audio-card,bitclock-master = <&i2s_rx>;
+				simple-audio-card,frame-master = <&i2s_rx>;
+				simple-audio-card,widgets = "Microphone", "Mic";
+				simple-audio-card,routing = "Mic Bias", "Mic";
+
+				simple-audio-card,cpu {
+					sound-dai = <&i2s_rx>;
+					dai-tdm-slot-width = <32>;
+					dai-tdm-slot-num = <2>;
+				};
+
+				simple-audio-card,codec {
+					sound-dai = <&inmp441_codec>;
+				};
+			};
+		};
+	};
+
+	__symbols__ {
+		i2s_rx = "/i2s@04100000";
+	};
+};

@@ -1,0 +1,3 @@
+CMakeFiles/audio_wakeword_linux.dir/mnt/d/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/decompress.cc.o: \
+ /mnt/d/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/decompress.cc \
+ /usr/include/stdc-predef.h

@@ -1,0 +1,418 @@
+The target system is: Linux -  - riscv64
+The host system is: Linux - 6.6.87.2-microsoft-standard-WSL2 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/riscv64-linux-gnu-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/3.22.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/riscv64-linux-gnu-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/3.22.1/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7060a/fast && gmake: Warning: File 'Makefile' has modification time 1.8 s in the future
+/usr/bin/gmake  -f CMakeFiles/cmTC_7060a.dir/build.make CMakeFiles/cmTC_7060a.dir/build
+gmake[1]: Entering directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File 'CMakeFiles/cmTC_7060a.dir/flags.make' has modification time 1.7 s in the future
+Building C object CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o
+/usr/bin/riscv64-linux-gnu-gcc   -v -o CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/bin/riscv64-linux-gnu-gcc
+Target: riscv64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/cc1 -quiet -v -imultilib . -imultiarch riscv64-linux-gnu /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_7060a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -march=rv64imafdc -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccGWEpvx.s
+GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)
+	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/riscv64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc-cross/riscv64-linux-gnu/11/include-fixed"
+ignoring nonexistent directory "/usr/include/riscv64-linux-gnu"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include
+ /usr/include
+End of search list.
+GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)
+	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 0c7080d8b21e3833ed5e5ca6a36e32fd
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/as -v --traditional-format -fpic -march=rv64imafdc -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -o CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o /tmp/ccGWEpvx.s
+GNU assembler version 2.38 (riscv64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/
+LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.'
+Linking C executable cmTC_7060a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7060a.dir/link.txt --verbose=1
+/usr/bin/riscv64-linux-gnu-gcc  -v CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -o cmTC_7060a   -latomic 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/riscv64-linux-gnu-gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper
+Target: riscv64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/
+LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7060a' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_7060a.'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZvJrsr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -hash-style=gnu --as-needed -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -pie -z now -z relro -o cmTC_7060a /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/riscv64-linux-gnu/11 -L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib -L/lib/riscv64-linux-gnu -L/usr/lib/riscv64-linux-gnu CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -latomic -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7060a' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_7060a.'
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include] ==> [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include] ==> [/usr/riscv64-linux-gnu/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include;/usr/riscv64-linux-gnu/include;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(riscv64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7060a/fast && gmake: Warning: File 'Makefile' has modification time 1.8 s in the future]
+  ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_7060a.dir/build.make CMakeFiles/cmTC_7060a.dir/build]
+  ignore line: [gmake[1]: Entering directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp']
+  ignore line: [gmake[1]: Warning: File 'CMakeFiles/cmTC_7060a.dir/flags.make' has modification time 1.7 s in the future]
+  ignore line: [Building C object CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/riscv64-linux-gnu-gcc   -v -o CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/riscv64-linux-gnu-gcc]
+  ignore line: [Target: riscv64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/']
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/cc1 -quiet -v -imultilib . -imultiarch riscv64-linux-gnu /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_7060a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -march=rv64imafdc -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccGWEpvx.s]
+  ignore line: [GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/riscv64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/riscv64-linux-gnu/11/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/usr/include/riscv64-linux-gnu"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 0c7080d8b21e3833ed5e5ca6a36e32fd]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/']
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/as -v --traditional-format -fpic -march=rv64imafdc -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -o CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o /tmp/ccGWEpvx.s]
+  ignore line: [GNU assembler version 2.38 (riscv64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.']
+  ignore line: [Linking C executable cmTC_7060a]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7060a.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/riscv64-linux-gnu-gcc  -v CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -o cmTC_7060a   -latomic ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/riscv64-linux-gnu-gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper]
+  ignore line: [Target: riscv64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7060a' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_7060a.']
+  link line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZvJrsr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -hash-style=gnu --as-needed -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -pie -z now -z relro -o cmTC_7060a /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/riscv64-linux-gnu/11 -L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib -L/lib/riscv64-linux-gnu -L/usr/lib/riscv64-linux-gnu CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o -latomic -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccZvJrsr.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--sysroot=/] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-melf64lriscv] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux-riscv64-lp64d.so.1] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_7060a] ==> ignore
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o]
+    arg [-L/usr/lib/gcc-cross/riscv64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11]
+    arg [-L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib]
+    arg [-L/lib/riscv64-linux-gnu] ==> dir [/lib/riscv64-linux-gnu]
+    arg [-L/usr/lib/riscv64-linux-gnu] ==> dir [/usr/lib/riscv64-linux-gnu]
+    arg [CMakeFiles/cmTC_7060a.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-latomic] ==> lib [atomic]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+  collapse obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o] ==> [/usr/riscv64-linux-gnu/lib/Scrt1.o]
+  collapse library dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11] ==> [/usr/lib/gcc-cross/riscv64-linux-gnu/11]
+  collapse library dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib] ==> [/usr/riscv64-linux-gnu/lib]
+  collapse library dir [/lib/riscv64-linux-gnu] ==> [/lib/riscv64-linux-gnu]
+  collapse library dir [/usr/lib/riscv64-linux-gnu] ==> [/usr/lib/riscv64-linux-gnu]
+  implicit libs: [atomic;gcc;gcc_s;c;gcc;gcc_s]
+  implicit objs: [/usr/riscv64-linux-gnu/lib/Scrt1.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+  implicit dirs: [/usr/lib/gcc-cross/riscv64-linux-gnu/11;/usr/riscv64-linux-gnu/lib;/lib/riscv64-linux-gnu;/usr/lib/riscv64-linux-gnu]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a83f6/fast && gmake: Warning: File 'Makefile' has modification time 1.5 s in the future
+/usr/bin/gmake  -f CMakeFiles/cmTC_a83f6.dir/build.make CMakeFiles/cmTC_a83f6.dir/build
+gmake[1]: Entering directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File 'CMakeFiles/cmTC_a83f6.dir/flags.make' has modification time 1.4 s in the future
+Building CXX object CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/riscv64-linux-gnu-g++   -v -o CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/usr/bin/riscv64-linux-gnu-g++
+Target: riscv64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/cc1plus -quiet -v -imultilib . -imultiarch riscv64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a83f6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -march=rv64imafdc -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccJruM3S.s
+GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)
+	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/riscv64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc-cross/riscv64-linux-gnu/11/include-fixed"
+ignoring nonexistent directory "/usr/include/riscv64-linux-gnu"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/.
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/backward
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include
+ /usr/include
+End of search list.
+GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)
+	compiled by GNU C version 11.4.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 451ff305e70345e10273914a7c2efde9
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/as -v --traditional-format -fpic -march=rv64imafdc -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -o CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJruM3S.s
+GNU assembler version 2.38 (riscv64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/
+LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_a83f6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a83f6.dir/link.txt --verbose=1
+/usr/bin/riscv64-linux-gnu-g++  -v CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a83f6   -latomic 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/riscv64-linux-gnu-g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper
+Target: riscv64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) 
+COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/
+LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a83f6' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_a83f6.'
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBCIzXr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -hash-style=gnu --as-needed -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -pie -z now -z relro -o cmTC_a83f6 /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/riscv64-linux-gnu/11 -L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib -L/lib/riscv64-linux-gnu -L/usr/lib/riscv64-linux-gnu CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -latomic -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a83f6' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_a83f6.'
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11]
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/.]
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/backward]
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+    add: [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11] ==> [/usr/riscv64-linux-gnu/include/c++/11]
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/.] ==> [/usr/riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu]
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/backward] ==> [/usr/riscv64-linux-gnu/include/c++/11/backward]
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include] ==> [/usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+  collapse include dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include] ==> [/usr/riscv64-linux-gnu/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/riscv64-linux-gnu/include/c++/11;/usr/riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu;/usr/riscv64-linux-gnu/include/c++/11/backward;/usr/lib/gcc-cross/riscv64-linux-gnu/11/include;/usr/riscv64-linux-gnu/include;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(riscv64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a83f6/fast && gmake: Warning: File 'Makefile' has modification time 1.5 s in the future]
+  ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_a83f6.dir/build.make CMakeFiles/cmTC_a83f6.dir/build]
+  ignore line: [gmake[1]: Entering directory '/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/CMakeTmp']
+  ignore line: [gmake[1]: Warning: File 'CMakeFiles/cmTC_a83f6.dir/flags.make' has modification time 1.4 s in the future]
+  ignore line: [Building CXX object CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/riscv64-linux-gnu-g++   -v -o CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/riscv64-linux-gnu-g++]
+  ignore line: [Target: riscv64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/']
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/cc1plus -quiet -v -imultilib . -imultiarch riscv64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a83f6.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -march=rv64imafdc -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccJruM3S.s]
+  ignore line: [GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/riscv64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/riscv64-linux-gnu/11/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/usr/include/riscv64-linux-gnu"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/.]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include/c++/11/backward]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include]
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++17 (Ubuntu 11.4.0-1ubuntu1~22.04) version 11.4.0 (riscv64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 451ff305e70345e10273914a7c2efde9]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/']
+  ignore line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/as -v --traditional-format -fpic -march=rv64imafdc -march=rv64imafdc -mabi=lp64d -misa-spec=2.2 -o CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJruM3S.s]
+  ignore line: [GNU assembler version 2.38 (riscv64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_a83f6]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a83f6.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/riscv64-linux-gnu-g++  -v CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a83f6   -latomic ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/riscv64-linux-gnu-g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper]
+  ignore line: [Target: riscv64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libitm --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --disable-werror --disable-multilib --with-arch=rv64gc --with-abi=lp64d --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=riscv64-linux-gnu --program-prefix=riscv64-linux-gnu- --includedir=/usr/riscv64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/riscv64-linux-gnu/11/:/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/:/lib/riscv64-linux-gnu/:/lib/:/usr/lib/riscv64-linux-gnu/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a83f6' '-shared-libgcc' '-march=rv64imafdc' '-mabi=lp64d' '-misa-spec=2.2' '-march=rv64imafdc' '-dumpdir' 'cmTC_a83f6.']
+  link line: [ /usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBCIzXr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -hash-style=gnu --as-needed -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -pie -z now -z relro -o cmTC_a83f6 /usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/riscv64-linux-gnu/11 -L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib -L/lib/riscv64-linux-gnu -L/usr/lib/riscv64-linux-gnu CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o -latomic -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc-cross/riscv64-linux-gnu/11/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccBCIzXr.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-melf64lriscv] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux-riscv64-lp64d.so.1] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_a83f6] ==> ignore
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o]
+    arg [-L/usr/lib/gcc-cross/riscv64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11]
+    arg [-L/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib]
+    arg [-L/lib/riscv64-linux-gnu] ==> dir [/lib/riscv64-linux-gnu]
+    arg [-L/usr/lib/riscv64-linux-gnu] ==> dir [/usr/lib/riscv64-linux-gnu]
+    arg [CMakeFiles/cmTC_a83f6.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-latomic] ==> lib [atomic]
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o]
+    arg [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o] ==> obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+  collapse obj [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib/Scrt1.o] ==> [/usr/riscv64-linux-gnu/lib/Scrt1.o]
+  collapse library dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11] ==> [/usr/lib/gcc-cross/riscv64-linux-gnu/11]
+  collapse library dir [/usr/lib/gcc-cross/riscv64-linux-gnu/11/../../../../riscv64-linux-gnu/lib] ==> [/usr/riscv64-linux-gnu/lib]
+  collapse library dir [/lib/riscv64-linux-gnu] ==> [/lib/riscv64-linux-gnu]
+  collapse library dir [/usr/lib/riscv64-linux-gnu] ==> [/usr/lib/riscv64-linux-gnu]
+  implicit libs: [atomic;stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit objs: [/usr/riscv64-linux-gnu/lib/Scrt1.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crti.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtendS.o;/usr/lib/gcc-cross/riscv64-linux-gnu/11/crtn.o]
+  implicit dirs: [/usr/lib/gcc-cross/riscv64-linux-gnu/11;/usr/riscv64-linux-gnu/lib;/lib/riscv64-linux-gnu;/usr/lib/riscv64-linux-gnu]
+  implicit fwks: []
+
+

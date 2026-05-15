@@ -1,0 +1,3 @@
+D:/Mew5/build-sg2002/CMakeFiles/audio_wakeword_linux.dir
+D:/Mew5/build-sg2002/CMakeFiles/ALL_BUILD.dir
+D:/Mew5/build-sg2002/CMakeFiles/ZERO_CHECK.dir

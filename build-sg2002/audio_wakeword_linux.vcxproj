@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0701BA81-9D70-3844-8BA7-E935166E08E9}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>audio_wakeword_linux</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Mew5\build-sg2002\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">audio_wakeword_linux.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">audio_wakeword_linux</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Mew5\build-sg2002\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">audio_wakeword_linux.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">audio_wakeword_linux</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Mew5\build-sg2002\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">audio_wakeword_linux.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">audio_wakeword_linux</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Mew5\build-sg2002\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">audio_wakeword_linux.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">audio_wakeword_linux</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -O3 -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>m.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--gc-sections</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Mew5/build-sg2002/Debug/audio_wakeword_linux.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Mew5/build-sg2002/Debug/audio_wakeword_linux.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -O3 -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>m.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--gc-sections</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Mew5/build-sg2002/Release/audio_wakeword_linux.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Mew5/build-sg2002/Release/audio_wakeword_linux.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -O3 -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>m.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--gc-sections</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Mew5/build-sg2002/MinSizeRel/audio_wakeword_linux.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Mew5/build-sg2002/MinSizeRel/audio_wakeword_linux.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -O3 -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-threadsafe-statics</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TF_LITE_STATIC_MEMORY;TF_LITE_DISABLE_X86_NEON;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\gemmlowp;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\flatbuffers\include;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\ruy;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\third_party\kissfft;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite;D:\Mew5\audio-client-sg2002-linux\..\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>m.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--gc-sections</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Mew5/build-sg2002/RelWithDebInfo/audio_wakeword_linux.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Mew5/build-sg2002/RelWithDebInfo/audio_wakeword_linux.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Mew5\audio-client-sg2002-linux\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Mew5/audio-client-sg2002-linux/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Mew5/audio-client-sg2002-linux -BD:/Mew5/build-sg2002 --check-stamp-file D:/Mew5/build-sg2002/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCXXLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCXXCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeRCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeSystem.cmake;D:\Mew5\build-sg2002\CMakeFiles\cmake.verify_globs;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Mew5\build-sg2002\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Mew5/audio-client-sg2002-linux/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Mew5/audio-client-sg2002-linux -BD:/Mew5/build-sg2002 --check-stamp-file D:/Mew5/build-sg2002/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCXXLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCXXCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeRCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeSystem.cmake;D:\Mew5\build-sg2002\CMakeFiles\cmake.verify_globs;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Mew5\build-sg2002\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Mew5/audio-client-sg2002-linux/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Mew5/audio-client-sg2002-linux -BD:/Mew5/build-sg2002 --check-stamp-file D:/Mew5/build-sg2002/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCXXLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCXXCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeRCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeSystem.cmake;D:\Mew5\build-sg2002\CMakeFiles\cmake.verify_globs;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Mew5\build-sg2002\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Mew5/audio-client-sg2002-linux/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Mew5/audio-client-sg2002-linux -BD:/Mew5/build-sg2002 --check-stamp-file D:/Mew5/build-sg2002/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCXXLinker.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeCXXCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeRCCompiler.cmake;D:\Mew5\build-sg2002\CMakeFiles\4.2.1\CMakeSystem.cmake;D:\Mew5\build-sg2002\CMakeFiles\cmake.verify_globs;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Mew5\build-sg2002\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Mew5\audio-client-sg2002-linux\main.cpp" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\wakeword.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\fft.cpp" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\fft_util.cpp" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\filterbank.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\filterbank_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\frontend.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\frontend_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\kiss_fft_int16.cpp" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\log_lut.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\log_scale.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\log_scale_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\noise_reduction.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\noise_reduction_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\pcan_gain_control.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\pcan_gain_control_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\window.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\src\tensorflow\lite\experimental\microfrontend\lib\window_util.c" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\activations.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\activations_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\add.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\add_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\add_n.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\arg_min_max.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\assign_variable.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_matmul.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_matmul_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_to_space_nd.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\broadcast_args.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\broadcast_to.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\call_once.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\cast.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\ceil.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\circular_buffer.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\circular_buffer_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\comparisons.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/comparisons.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\concatenation.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\conv.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\conv_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\cumsum.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decode.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decode_state.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decode_state_huffman.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decode_state_lut.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decode_state_prune.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decompress.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decompress_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\depth_to_space.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\depthwise_conv.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\depthwise_conv_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\dequantize.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\dequantize_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\detection_postprocess.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\div.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\dynamic_update_slice.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\elementwise.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\elu.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\embedding_lookup.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\ethosu.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\exp.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\expand_dims.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\fill.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor_div.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor_mod.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\fully_connected.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\fully_connected_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\gather.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\gather_nd.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\hard_swish.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\hard_swish_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\if.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\kernel_runner.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\kernel_util.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/kernel_util.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\l2_pool_2d.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\l2norm.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\leaky_relu.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\leaky_relu_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\log_softmax.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logical.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logical_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logistic.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logistic_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\lstm_eval.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\lstm_eval_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\maximum_minimum.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\micro_tensor_utils.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mirror_pad.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\neg.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pack.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pad.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pad_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pooling.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pooling_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\prelu.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\prelu_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\quantize.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\quantize_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\read_variable.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reduce.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reduce_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reshape.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reshape_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\resize_bilinear.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\resize_nearest_neighbor.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reverse.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\round.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\select.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\shape.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\slice.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\softmax.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\softmax_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\space_to_batch_nd.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\space_to_depth.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\split.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\split_v.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\squared_difference.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\squeeze.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\strided_slice.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\strided_slice_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\svdf.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\svdf_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\tanh.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose_common.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose_conv.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\unidirectional_sequence_lstm.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\unpack.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\var_handle.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\while.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\zeros_like.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\tflite_bridge\flatbuffer_conversions_bridge.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\tflite_bridge\micro_error_reporter.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\debug_log.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\flatbuffer_utils.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_helpers.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_allocation_info.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_context.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter_context.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter_graph.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_log.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_op_resolver.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_profiler.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_resource_variable.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_time.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_utils.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\recording_micro_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\system_setup.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_planner\greedy_memory_planner.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_planner\linear_memory_planner.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\non_persistent_arena_buffer_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\persistent_arena_buffer_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\recording_single_arena_buffer_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\single_arena_buffer_allocator.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\c\common.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/core/c/common.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\api\flatbuffer_conversions.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\api\tensor_utils.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/core/api/tensor_utils.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\kernel_util.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/kernel_util.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\common.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/common.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\quantization_util.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\portable_tensor_utils.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/portable_tensor_utils.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\tensor_utils.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/tensor_utils.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\tensor_ctypes.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\reference\portable_tensor_utils.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/portable_tensor_utils.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\reference\comparisons.cc">
+      <ObjectFileName>$(IntDir)/D_/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/comparisons.cc.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir\lite\core\api\error_reporter.cc" />
+    <ClCompile Include="D:\Mew5\audio-client-esp32s3\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir\lite\schema\schema_utils.cc" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\Mew5\build-sg2002\ZERO_CHECK.vcxproj">
+      <Project>{D9738CB8-3C95-3EEC-A9EC-7DAA597AA65C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,38 @@
+// INMP441 I2S mic for Milk-V Duo 256M (SG2002 QFN)
+// Uses i2s2 (04120000) via 100Mbps ETH pads:
+//   TX+ (ETH pad) → IIS2_LRCK  → INMP441 WS
+//   TX- (ETH pad) → IIS2_BCLK  → INMP441 SCK
+//   RX- (ETH pad) → IIS2_DI    → INMP441 SD
+//   GND (ETH pad) → GND        → INMP441 GND + L/R pin
+//   3V3 (pin 36)  → VCC        → INMP441 VCC
+//
+// Prerequisites (applied in u-boot cvi_board_init.c):
+//   PINMUX_CONFIG(PAD_ETH_TXP, IIS2_LRCK);
+//   PINMUX_CONFIG(PAD_ETH_TXM, IIS2_BCLK);
+//   PINMUX_CONFIG(PAD_ETH_RXM, IIS2_DI);
+//
+// This fragment must be merged into the board DTS (not a standalone overlay)
+// because cv181x_asic_qfn.dtsi deletes i2s2 node.
+
+/ {
+    sound_inmp441: sound_inmp441 {
+        compatible = "simple-audio-card";
+        simple-audio-card,name = "inmp441";
+        simple-audio-card,format = "i2s";
+        simple-audio-card,bitclock-master = <&inmp441_cpu>;
+        simple-audio-card,frame-master = <&inmp441_cpu>;
+
+        inmp441_cpu: simple-audio-card,cpu {
+            sound-dai = <&i2s2>;
+        };
+
+        simple-audio-card,codec {
+            sound-dai = <&dummy_codec>;
+        };
+    };
+
+    dummy_codec: dummy_codec {
+        compatible = "snd-soc-dummy";
+        #sound-dai-cells = <0>;
+    };
+};

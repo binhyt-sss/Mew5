@@ -1,0 +1,37 @@
+CMakeFiles/audio_wakeword_pipe.dir/mnt/d/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/ethosu.cc.o: \
+ /mnt/d/Mew5/audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/kernels/ethosu.cc \
+ /usr/riscv64-linux-gnu/include/stdc-predef.h \
+ /mnt/d/Mew5/audio-client-sg2002-linux/../audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/micro/micro_common.h \
+ /mnt/d/Mew5/audio-client-sg2002-linux/../audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/c/common.h \
+ /mnt/d/Mew5/audio-client-sg2002-linux/../audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/core/c/common.h \
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include/stdarg.h \
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include/stdbool.h \
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include/stddef.h \
+ /usr/lib/gcc-cross/riscv64-linux-gnu/11/include/stdint.h \
+ /usr/riscv64-linux-gnu/include/stdint.h \
+ /usr/riscv64-linux-gnu/include/bits/libc-header-start.h \
+ /usr/riscv64-linux-gnu/include/features.h \
+ /usr/riscv64-linux-gnu/include/features-time64.h \
+ /usr/riscv64-linux-gnu/include/bits/wordsize.h \
+ /usr/riscv64-linux-gnu/include/bits/timesize.h \
+ /usr/riscv64-linux-gnu/include/sys/cdefs.h \
+ /usr/riscv64-linux-gnu/include/bits/long-double.h \
+ /usr/riscv64-linux-gnu/include/gnu/stubs.h \
+ /usr/riscv64-linux-gnu/include/gnu/stubs-lp64d.h \
+ /usr/riscv64-linux-gnu/include/bits/types.h \
+ /usr/riscv64-linux-gnu/include/bits/typesizes.h \
+ /usr/riscv64-linux-gnu/include/bits/time64.h \
+ /usr/riscv64-linux-gnu/include/bits/wchar.h \
+ /usr/riscv64-linux-gnu/include/bits/stdint-intn.h \
+ /usr/riscv64-linux-gnu/include/bits/stdint-uintn.h \
+ /mnt/d/Mew5/audio-client-sg2002-linux/../audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/lite/core/c/c_api_types.h \
+ /mnt/d/Mew5/audio-client-sg2002-linux/../audio-client-esp32s3/managed_components/espressif__esp-tflite-micro/tensorflow/compiler/mlir/lite/core/c/tflite_types.h \
+ /usr/riscv64-linux-gnu/include/c++/11/utility \
+ /usr/riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/bits/c++config.h \
+ /usr/riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/bits/os_defines.h \
+ /usr/riscv64-linux-gnu/include/c++/11/riscv64-linux-gnu/bits/cpu_defines.h \
+ /usr/riscv64-linux-gnu/include/c++/11/bits/stl_relops.h \
+ /usr/riscv64-linux-gnu/include/c++/11/bits/stl_pair.h \
+ /usr/riscv64-linux-gnu/include/c++/11/bits/move.h \
+ /usr/riscv64-linux-gnu/include/c++/11/type_traits \
+ /usr/riscv64-linux-gnu/include/c++/11/initializer_list

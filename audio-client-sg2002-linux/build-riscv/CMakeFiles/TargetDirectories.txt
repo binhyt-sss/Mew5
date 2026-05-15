@@ -1,0 +1,4 @@
+/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/audio_wakeword_linux.dir
+/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/audio_wakeword_pipe.dir
+/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/edit_cache.dir
+/mnt/d/Mew5/audio-client-sg2002-linux/build-riscv/CMakeFiles/rebuild_cache.dir
